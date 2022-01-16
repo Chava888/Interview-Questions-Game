@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+div{
+  text-align: center;
+  color: #fcff9e;
+  font-style: italic;
+}
+
+button{
+  margin: 10px;
+  color:aliceblue;
+  width: 200px;
+  
+}
+
+h2{
+  text-align: center;
+  color:#fcff9e;
+  margin-bottom: 25px;
+  font-style: normal;
+}
+
+.App-container{
+  color: #fcff9e;
+}
+
+h1{
+  margin-bottom: 25px;
+}

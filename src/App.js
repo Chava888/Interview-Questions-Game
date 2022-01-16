@@ -29,25 +29,23 @@ export default class App extends Component {
     }
   }
 
-  //Check if all questions have been reviewed
-  checker = () => {
-    if (this.state.tracker === 26) {
-      alert('All questions completed')
-    }
-  }
 
   //Increase tracker by 1
   trackerAdd = () => {
-    this.state.tracker = this.setState({ tracker: this.state.tracker + 1 })
+    this.setState({ tracker: this.state.tracker + 1, answer: this.state.answer ? !this.state.answer : this.state.answer })
   }
 
   //Display answer by changing the prop answer
   checkAnswer = () => {
-    this.state.answer = this.setState({ answer: !this.state.answer })
+    this.setState({ answer: !this.state.answer })
   }
 
   handleOnClick = () => {
-    this.checker()
+    if (this.state.tracker === this.state.arrayQuestionsAnswer.length - 1) {
+      alert('All questions completed, please refresh the page')
+      return console.log('Refresh page')
+    }
+
     this.trackerAdd()
   }
 
@@ -56,12 +54,18 @@ export default class App extends Component {
 
     return (
       <>
-        <h2>Question</h2>
-        {this.state.arrayQuestionsAnswer[this.state.tracker][0]}
-        <h2>Answer</h2>
-        {this.state.answer ? this.state.arrayQuestionsAnswer[this.state.tracker][1] : ""}
-        <button onClick={this.checkAnswer}>Answer</button>
-        <button onClick={this.handleOnClick}>Next Question</button>
+        <h1>Play the Interview Game</h1>
+        <h2>You are on question {this.state.tracker + 1} of {this.state.arrayQuestionsAnswer.length} questions</h2>
+        <div className="App-container">
+          <h2 class="fs-2">Question</h2>
+          <div class="fs-3">{this.state.arrayQuestionsAnswer[this.state.tracker][0]}</div>
+        </div>
+        <div className="card-body">
+          <h2 class="fs-2">Answer</h2>
+          <div class="fs-3">{this.state.answer ? this.state.arrayQuestionsAnswer[this.state.tracker][1] : ""}</div>
+          <button type="button" className="btn btn-primary btn-lg" styles={"color: white;"} onClick={this.checkAnswer}>Show Answer</button>
+          <button type="button" className="btn btn-success btn-lg" onClick={this.handleOnClick}>Next Question</button>
+        </div>
       </>
     )
   }
